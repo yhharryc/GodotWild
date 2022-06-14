@@ -1,0 +1,92 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://game/resources/sprites/player/states/idle/1.png" type="Texture" id=1]
+[ext_resource path="res://game/scripts/actors/Player.gd" type="Script" id=2]
+[ext_resource path="res://game/scripts/state_machine/states/idle.gd" type="Script" id=3]
+[ext_resource path="res://game/scripts/state_machine/states/move.gd" type="Script" id=4]
+[ext_resource path="res://game/scripts/state_machine/player_state_machine.gd" type="Script" id=5]
+[ext_resource path="res://game/scripts/actors/StateLabel.gd" type="Script" id=6]
+[ext_resource path="res://game/scripts/state_machine/states/in_air.gd" type="Script" id=7]
+[ext_resource path="res://game/scripts/actors/VelocityLabel.gd" type="Script" id=8]
+[ext_resource path="res://game/scripts/state_machine/states/jump.gd" type="Script" id=9]
+[ext_resource path="res://game/resources/sprites/player/states/idle/2.png" type="Texture" id=10]
+[ext_resource path="res://game/resources/sprites/player/states/idle/3.png" type="Texture" id=11]
+[ext_resource path="res://game/resources/sprites/player/states/idle/4.png" type="Texture" id=12]
+[ext_resource path="res://game/resources/sprites/player/states/idle/7.png" type="Texture" id=13]
+[ext_resource path="res://game/resources/sprites/player/states/idle/5.png" type="Texture" id=14]
+[ext_resource path="res://game/resources/sprites/player/states/idle/6.png" type="Texture" id=15]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [  ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 1 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 13 ) ],
+"loop": true,
+"name": "player_idle",
+"speed": 5.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 13.0
+height = 53.0
+
+[sub_resource type="AnimationNodeStateMachine" id=3]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=4]
+
+[node name="Player" type="KinematicBody2D"]
+script = ExtResource( 2 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+scale = Vector2( 2, 2 )
+frames = SubResource( 1 )
+animation = "player_idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 45 )
+shape = SubResource( 2 )
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource( 5 )
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource( 3 )
+
+[node name="Move" type="Node" parent="StateMachine"]
+script = ExtResource( 4 )
+
+[node name="In_Air" type="Node" parent="StateMachine"]
+script = ExtResource( 7 )
+
+[node name="Jump" type="Node" parent="StateMachine"]
+script = ExtResource( 9 )
+
+[node name="Debugs" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Label" type="Label" parent="Debugs"]
+margin_left = -18.0
+margin_top = -67.0
+margin_right = 22.0
+margin_bottom = -53.0
+script = ExtResource( 6 )
+
+[node name="VelocityLabel" type="Label" parent="Debugs"]
+margin_left = 38.0
+margin_top = -31.0
+margin_right = 78.0
+margin_bottom = -17.0
+script = ExtResource( 8 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 3 )
+anim_player = NodePath("../AnimationPlayer")
+parameters/playback = SubResource( 4 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[connection signal="state_changed" from="StateMachine" to="Debugs/Label" method="_on_StateMachine_state_changed"]
