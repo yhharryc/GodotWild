@@ -27,3 +27,8 @@ func set_look_direction(value):
 func is_grounded():
 	return is_on_floor()
 	
+
+
+func _on_Player_direction_changed(new_direction):
+	$Sprite.scale.x = new_direction.x *abs($Sprite.scale.x)
+	pass # Replace with function body.
