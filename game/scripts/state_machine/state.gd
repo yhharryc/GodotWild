@@ -3,6 +3,7 @@ class_name State
 
 signal finished(next_state_name)
 
+onready var player = get_parent().get_node(get_parent().player)
 func enter():
 	pass
 

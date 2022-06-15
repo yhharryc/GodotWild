@@ -2,6 +2,7 @@ extends StateMachine
 
 #onready var jump = $Jump
 #onready var stagger = $Stagger
+export(NodePath) var player
 
 func _ready():
 	states_map = {

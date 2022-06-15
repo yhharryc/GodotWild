@@ -41,3 +41,4 @@ func move(speed, direction):
 #	if owner.get_slide_count() == 0:
 #		return
 #	return owner.get_slide_collision(0)
+

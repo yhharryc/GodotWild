@@ -2,8 +2,9 @@ extends "res://game/scripts/state_machine/states/motion.gd"
 
 
 func enter():
+	owner.jump_count = 0
 	self.applied_velocity.y = 0
-	if owner.can_jump:
+	if owner.can_on_ground_jump():
 		emit_signal("finished","jump")
 
 func handle_input(event):
@@ -20,7 +21,8 @@ func update(_delta):
 	pass
 
 func exit():
-	if ! Input.is_action_just_pressed("jump"):
-		owner.on_ground_jump_timer = get_tree().create_timer(owner.on_ground_jump_window,false)
+	if ! Input.is_action_pressed("jump")&& (!owner.is_grounded()):
+		print_debug(self.name+"!!!")
+		owner.in_air_jump_timer = get_tree().create_timer(owner.in_air_jump_window,false)
 	
 	pass

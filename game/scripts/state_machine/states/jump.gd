@@ -7,6 +7,7 @@ extends "res://game/scripts/state_machine/states/in_air.gd"
 var hold_jump_momentum
 var momentum_left
 func enter():
+	owner.jump_count+=1
 	self.velocity.y = 0
 	momentum_left = owner.maxJumpVelocity - owner.initialJumpVelocity
 	#self.velocity += Vector2(0,-400)
