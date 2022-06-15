@@ -1,8 +1,8 @@
 extends KinematicBody2D
 
 export(NodePath) var targetPath
-export(int) var record_num = 1
-export(float) var min_speed = 5
+export(int) var record_num = 3
+export(float) var min_speed = 15
 var target
 
 var velocity = Vector2()
@@ -34,7 +34,17 @@ func calculate_velocity():
 		if temp.distance_to(Vector2())<min_speed:
 			temp = Vector2()
 			pass
+		# if accel and velocity are in different direction, adjust to accel
 		accel = temp
+		if sign(accel.x)!=sign(velocity.x):
+			
+			self.modulate = Color(1,0,0)
+			var adjustion = 0.005
+			#lerp(velocity.x,0,adjustion)
+			accel= accel*(1+get_vector_to_target().distance_to(Vector2())*adjustion)
+		else:
+			self_modulate =  Color(0,0,0)
+		
 
 func compare_velocity_to_target_direction():
 	pass
@@ -52,7 +62,10 @@ func get_direction_to_target():
 	return get_vector_to_target().normalized()
 
 func _physics_process(delta):
-	record_velocity(target.velocity)
+	record_velocity(target.applied_velocity)
 	calculate_velocity()
 	velocity +=accel*delta
+	velocity.y = get_vector_to_target().y
+	if accel == Vector2():
+		velocity = lerp(velocity,Vector2(),0.5)
 	move_and_slide(velocity)

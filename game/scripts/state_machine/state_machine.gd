@@ -1,7 +1,8 @@
 extends Node
 class_name StateMachine
-
+signal state_processed(delta)
 signal state_changed(current_state)
+
 export(NodePath) var start_state
 var states_map = {}
 
@@ -40,7 +41,9 @@ func _unhandled_input(event):
 
 
 func _physics_process(delta):
+	yield(owner,"velocity_recorded")
 	current_state.update(delta)
+	emit_signal("state_processed",delta)
 
 
 func _on_animation_finished(anim_name):

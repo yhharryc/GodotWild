@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node2D",
+"class": "Level",
+"language": "GDScript",
+"path": "res://game/scripts/LevelManager.gd"
+}, {
 "base": "Node",
 "class": "State",
 "language": "GDScript",
@@ -20,6 +25,7 @@ _global_script_classes=[ {
 "path": "res://game/scripts/state_machine/state_machine.gd"
 } ]
 _global_script_class_icons={
+"Level": "",
 "State": "",
 "StateMachine": ""
 }
@@ -29,6 +35,11 @@ _global_script_class_icons={
 config/name="Watch Your Back Godot"
 run/main_scene="res://game/scenes/Game.tscn"
 config/icon="res://icon.png"
+
+[display]
+
+window/size/width=1200
+window/size/height=900
 
 [input]
 

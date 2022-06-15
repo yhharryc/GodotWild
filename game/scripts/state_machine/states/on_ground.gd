@@ -1,9 +1,8 @@
 extends "res://game/scripts/state_machine/states/motion.gd"
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+func enter():
+	self.applied_velocity.y = 0
 
 func handle_input(event):
 	if event.is_action_pressed("jump"):

@@ -3,7 +3,7 @@ extends "res://game/scripts/state_machine/states/on_ground.gd"
 
 func enter():
 	#owner.get_node("AnimationPlayer").play("idle")
-	self.velocity = Vector2();
+	self.applied_velocity = Vector2();
 	pass
 
 

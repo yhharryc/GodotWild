@@ -11,12 +11,10 @@ radius = 32.0
 
 [node name="Friend" type="KinematicBody2D"]
 position = Vector2( 298, 237 )
-collision_layer = 0
-collision_mask = 0
+collision_layer = 2
+collision_mask = 2
 script = ExtResource( 2 )
 targetPath = NodePath("../Player")
-record_num = null
-min_speed = null
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 4 )

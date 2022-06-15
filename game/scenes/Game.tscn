@@ -1,35 +1,65 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://game/scenes/actors/Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://game/scenes/actors/Friend.tscn" type="PackedScene" id=2]
+[ext_resource path="res://game/resources/animations/player/default_font.tres" type="DynamicFont" id=1]
+[ext_resource path="res://game/scripts/GUIManager.gd" type="Script" id=2]
+[ext_resource path="res://game/resources/animations/GUI/color_rect_fade_in.tres" type="Animation" id=3]
+[ext_resource path="res://game/resources/animations/GUI/scenescolor_rect_fade_out.tres" type="Animation" id=4]
+[ext_resource path="res://game/scripts/GameManager.gd" type="Script" id=5]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("BlackBackGround:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ) ]
+}
 
 [node name="Game" type="Node"]
+script = ExtResource( 5 )
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2( 487, 317 )
-scale = Vector2( 39.6, 1 )
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-shape = SubResource( 1 )
+[node name="GUI" type="Control" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="."]
-position = Vector2( 239, 278 )
-rotation = -1.56944
-scale = Vector2( -2.92239, 1.4488 )
+[node name="TitleScreen" type="Control" parent="CanvasLayer/GUI"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
-shape = SubResource( 1 )
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/GUI/TitleScreen"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
 
-[node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 464, 193 )
+[node name="BlackBackGround" type="ColorRect" parent="CanvasLayer/GUI"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0 )
 
-[node name="Friend" parent="." instance=ExtResource( 2 )]
-record_num = 1
-min_speed = 5.0
+[node name="PopLabel" type="Label" parent="CanvasLayer/GUI"]
+visible = false
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = -7.0
+margin_bottom = 7.0
+custom_fonts/font = ExtResource( 1 )
+text = "pop label"
+align = 1
+valign = 1
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 510, 176 )
-current = true
-zoom = Vector2( 2, 2 )
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/GUI"]
+anims/RESET = SubResource( 1 )
+anims/color_rect_fade_in = ExtResource( 3 )
+anims/color_rect_fade_out = ExtResource( 4 )

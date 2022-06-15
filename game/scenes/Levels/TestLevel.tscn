@@ -1,0 +1,107 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://game/resources/sprites/tiles/darkTile.png" type="Texture" id=2]
+[ext_resource path="res://game/scenes/actors/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://game/scenes/actors/Friend.tscn" type="PackedScene" id=4]
+[ext_resource path="res://game/scripts/LevelManager.gd" type="Script" id=6]
+
+[sub_resource type="RectangleShape2D" id=29]
+extents = Vector2( 600, 450 )
+
+[sub_resource type="RectangleShape2D" id=28]
+extents = Vector2( 32, 32 )
+
+[node name="Level" type="Node2D"]
+position = Vector2( -2, -7 )
+script = ExtResource( 6 )
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+
+[node name="Player" parent="." instance=ExtResource( 3 )]
+position = Vector2( 226, 809 )
+
+[node name="Friend" parent="." instance=ExtResource( 4 )]
+position = Vector2( 88, 817 )
+scale = Vector2( 0.5, 0.5 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+current = true
+
+[node name="Area2D" type="Area2D" parent="Camera2D"]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/Area2D"]
+position = Vector2( 600, 450 )
+shape = SubResource( 29 )
+
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Walls"]
+position = Vector2( 697, 910 )
+scale = Vector2( 48.4, 1.76 )
+
+[node name="Sprite" type="Sprite" parent="Walls/StaticBody2D"]
+scale = Vector2( 2, 2 )
+texture = ExtResource( 2 )
+hframes = 3
+vframes = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D"]
+shape = SubResource( 28 )
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="Walls"]
+position = Vector2( -618, 647 )
+scale = Vector2( 48.4, 1.76 )
+
+[node name="Sprite" type="Sprite" parent="Walls/StaticBody2D5"]
+scale = Vector2( 2, 2 )
+texture = ExtResource( 2 )
+hframes = 3
+vframes = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D5"]
+shape = SubResource( 28 )
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Walls"]
+position = Vector2( -13, 949 )
+rotation = -1.57435
+scale = Vector2( 34.6493, 1.84588 )
+
+[node name="Sprite" type="Sprite" parent="Walls/StaticBody2D3"]
+scale = Vector2( 2, 2 )
+texture = ExtResource( 2 )
+hframes = 3
+vframes = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D3"]
+shape = SubResource( 28 )
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="Walls"]
+position = Vector2( 1214, -1367 )
+rotation = -1.57435
+scale = Vector2( 64.9208, 2.04346 )
+
+[node name="Sprite" type="Sprite" parent="Walls/StaticBody2D4"]
+scale = Vector2( 2, 2 )
+texture = ExtResource( 2 )
+hframes = 3
+vframes = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D4"]
+shape = SubResource( 28 )
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Walls"]
+position = Vector2( 1084, -3 )
+scale = Vector2( 58.48, 1.88 )
+
+[node name="Sprite" type="Sprite" parent="Walls/StaticBody2D2"]
+scale = Vector2( 2, 2 )
+texture = ExtResource( 2 )
+hframes = 3
+vframes = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D2"]
+shape = SubResource( 28 )
+
+[connection signal="body_exited" from="Camera2D/Area2D" to="." method="_on_Area2D_body_exited"]

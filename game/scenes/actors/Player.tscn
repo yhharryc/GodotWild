@@ -55,9 +55,14 @@ tracks/0/keys = {
 }
 
 [node name="Player" type="KinematicBody2D"]
+position = Vector2( -1, 0 )
 script = ExtResource( 2 )
+maxJumpHeight = 70.0
+maxHoldJumpHeight = 150.0
+maxJumpTime = 0.3
 
 [node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, -40 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 1 )
 
@@ -69,7 +74,7 @@ animation = "player_idle"
 frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, 45 )
+position = Vector2( 0, 5 )
 shape = SubResource( 2 )
 
 [node name="StateMachine" type="Node" parent="."]
@@ -113,5 +118,15 @@ script = ExtResource( 8 )
 anims/RESET = SubResource( 3 )
 anims/player_idle = ExtResource( 16 )
 
+[node name="ViewZone" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ViewZone"]
+position = Vector2( 0, -12 )
+polygon = PoolVector2Array( 0, 0, 400, -60, 400, 60 )
+
 [connection signal="direction_changed" from="." to="." method="_on_Player_direction_changed"]
 [connection signal="state_changed" from="StateMachine" to="Debugs/Label" method="_on_StateMachine_state_changed"]
+[connection signal="body_entered" from="ViewZone" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="ViewZone" to="." method="_on_ViewZone_body_exited"]
