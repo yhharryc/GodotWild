@@ -5,12 +5,16 @@ export(float) var max_run_speed = 700
 export(float) var maxJumpHeight = 120
 export(float) var maxHoldJumpHeight = 180
 export(float) var maxJumpTime = 0.5
+export(float) var in_air_jump_window = 0.2
+export(float) var on_ground_jump_window = 0.2
+var in_air_jump_timer
+var on_ground_jump_timer 
 var initialJumpVelocity
 var maxJumpVelocity
 var gravity = -9.8
 var velocity = Vector2()
 var applied_velocity = Vector2()
-
+var can_jump setget ,get_can_jump
 #signals
 signal direction_changed(new_direction)
 signal velocity_recorded
@@ -20,6 +24,14 @@ signal friend_spotted(source,friend)
 var look_direction = Vector2.RIGHT setget set_look_direction
 # Called when the node enters the scene tree for the first time.
 func _init():
+	pass
+
+func get_can_jump():
+	if on_ground_jump_timer:
+		return true
+	if in_air_jump_timer:
+		return true
+	return false
 	pass
 
 func _ready():

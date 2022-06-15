@@ -37,3 +37,8 @@ func handle_gravity():
 #	self.velocity.y = self.velocity.y+owner.gravity*(-1)*get_physics_process_delta_time() 
 #	self.applied_velocity.y = min((previous_y+velocity.y)/2,100)
 	self.applied_velocity.y -= owner.gravity*get_physics_process_delta_time()
+	
+func _unhandled_input(event):
+	if event.is_action_pressed("jump")&&owner.can_jump:
+		emit_signal("finished","jump")
+		pass
