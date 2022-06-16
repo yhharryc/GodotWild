@@ -42,7 +42,6 @@ anchor_bottom = 1.0
 color = Color( 0, 0, 0, 1 )
 
 [node name="BlackBackGround" type="ColorRect" parent="CanvasLayer/GUI"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 0 )
@@ -63,3 +62,12 @@ valign = 1
 anims/RESET = SubResource( 1 )
 anims/color_rect_fade_in = ExtResource( 3 )
 anims/color_rect_fade_out = ExtResource( 4 )
+
+[node name="InLevelScreen" type="Control" parent="CanvasLayer/GUI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="TimePassed" type="Label" parent="CanvasLayer/GUI/InLevelScreen"]
+anchor_right = 1.0
+margin_bottom = 14.0
+align = 1

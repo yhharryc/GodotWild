@@ -22,7 +22,6 @@ func update(_delta):
 
 func exit():
 	if ! Input.is_action_pressed("jump")&& (!owner.is_grounded()):
-		print_debug(self.name+"!!!")
 		owner.in_air_jump_timer = get_tree().create_timer(owner.in_air_jump_window,false)
 	
 	pass

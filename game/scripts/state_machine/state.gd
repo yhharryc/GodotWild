@@ -18,3 +18,13 @@ func update(_delta):
 
 func _on_animation_finished(_anim_name):
 	pass
+
+func play_anim(anim_name):
+	var anim_player:AnimationPlayer
+	anim_player = player.get_node("AnimationPlayer")
+	anim_player.play(anim_name)
+	pass
+
+func _on_character_dead():
+	
+	pass

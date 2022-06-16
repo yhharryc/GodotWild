@@ -9,8 +9,11 @@ func _ready():
 		"idle": $Idle,
 		"move": $Move,
 		"in_air":$In_Air,
-		"jump":$Jump
+		"jump":$Jump,
+		"die":$Die
 	}
+	owner.connect("character_dead", self, "_on_character_dead")
+
 	
 
 
@@ -34,3 +37,9 @@ func _unhandled_input(event):
 #		_change_state("attack")
 #		return
 	current_state.handle_input(event)
+
+
+func _on_character_dead():
+	if current_state != states_map["die"]:
+		current_state.emit_signal("finished","die")
+	pass

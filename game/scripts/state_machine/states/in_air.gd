@@ -10,12 +10,12 @@ extends "res://game/scripts/state_machine/states/motion.gd"
 func _ready():
 	pass # Replace with function body.
 
-func calculate_gravity(y):
-	var previous_y = self.velocity.y
-	self.velocity.y = self.velocity.y 
-	#return min(y + owner.gravity*(-1), 200)
-	return y + player.gravity*(-1)
-	pass
+#func calculate_gravity(y):
+#	var previous_y = self.velocity.y
+#	self.velocity.y = self.velocity.y 
+#	#return min(y + owner.gravity*(-1), 200)
+#	return y + player.gravity*(-1)
+#	pass
 
 
 func update(_delta):
@@ -33,9 +33,6 @@ func update(_delta):
 	pass
 
 func handle_gravity():
-#	var previous_y = self.velocity.y
-#	self.velocity.y = self.velocity.y+owner.gravity*(-1)*get_physics_process_delta_time() 
-#	self.applied_velocity.y = min((previous_y+velocity.y)/2,100)
 	self.applied_velocity.y -= player.gravity*get_physics_process_delta_time()
 
 

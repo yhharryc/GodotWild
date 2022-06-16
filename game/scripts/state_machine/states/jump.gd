@@ -7,6 +7,7 @@ extends "res://game/scripts/state_machine/states/in_air.gd"
 var hold_jump_momentum
 var momentum_left
 func enter():
+	play_anim("player_jump")
 	owner.jump_count+=1
 	self.velocity.y = 0
 	momentum_left = owner.maxJumpVelocity - owner.initialJumpVelocity
@@ -21,9 +22,9 @@ func update(_delta):
 	speed = owner.get_walk_speed()
 	if not self.velocity:
 		self.velocity = Vector2()
-#	var previous_y = self.velocity.y
-#	self.velocity.y = -60#owner.initialJumpVelocity *(-1)
-#	self.velocity = Vector2(input_direction.x*speed,calculate_gravity(self.velocity.y))
+	
+	
+	
 	self.applied_velocity.x = input_direction.x * speed
 	
 	handle_gravity()
@@ -36,6 +37,8 @@ func update(_delta):
 			self.applied_velocity.y+=momentum_left
 			emit_signal("finished","in_air")
 	update_look_direction(input_direction)
+	if self.applied_velocity.y>=0:
+		play_anim("player_fall")
 	yield(owner,"character_moved")
 	if owner.is_grounded():
 		emit_signal("finished","idle")

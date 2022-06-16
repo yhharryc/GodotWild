@@ -40,3 +40,14 @@ func show_pop_label(message,time = 1.0):
 		yield(get_tree().create_timer(time),"timeout")
 	fade_out($BlackBackGround)
 	fade_out($PopLabel)
+
+func play_transition(source,method_to_call =""):
+	$AnimationPlayer.play("color_rect_fade_in")
+	yield($AnimationPlayer,"animation_finished")
+	if method_to_call!="":
+		source.call(method_to_call)
+	$AnimationPlayer.play("color_rect_fade_out")
+	yield($AnimationPlayer,"animation_finished")
+	
+	
+	

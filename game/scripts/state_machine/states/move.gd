@@ -4,7 +4,7 @@ func enter():
 	.enter()
 	speed = 0.0
 	#self.velocity = Vector2(0,0)
-
+	play_anim("player_move")
 	var input_direction = get_input_direction()
 	update_look_direction(input_direction)
 	#owner.get_node("AnimationPlayer").play("walk")

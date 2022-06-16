@@ -6,6 +6,7 @@ var applied_velocity setget set_applied_velocity,get_applied_velocity
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
+
 func get_velocity():
 	return owner.velocity
 	pass
@@ -32,3 +33,4 @@ func get_input_direction():
 func update_look_direction(direction):
 	if direction and owner.look_direction != direction:
 		owner.look_direction = direction
+

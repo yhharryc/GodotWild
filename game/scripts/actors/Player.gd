@@ -21,6 +21,7 @@ signal direction_changed(new_direction)
 signal velocity_recorded
 signal character_moved
 signal friend_spotted(source,friend)
+signal friend_exited(source,friend)
 signal character_ready
 signal character_dead
 
@@ -50,7 +51,7 @@ func _physics_process(delta):
 	velocity = applied_velocity
 	emit_signal("velocity_recorded")
 	yield(get_node("StateMachine"),"state_processed")
-	move_and_slide(self.applied_velocity, Vector2.UP, 5, 2)
+	velocity = move_and_slide_with_snap(self.applied_velocity,Vector2.DOWN, Vector2.UP, 5, 2)
 	if get_slide_count():
 		var collision_info = get_slide_collision(0)
 	emit_signal("character_moved")
@@ -85,14 +86,13 @@ func _on_Player_direction_changed(new_direction):
 
 func _on_Area2D_body_entered(body):
 	emit_signal("friend_spotted",self,body)
-	body.visible = true
-	body.set_physics_process(false)
-	pass # Replace with function body.
 
 
 func _on_ViewZone_body_exited(body):
-	#body.visible = false
-	body.set_physics_process(true)
-	pass # Replace with function body.
-	
+	emit_signal("friend_exited",self,body)
 
+	
+func _on_character_hit(source,character):
+	$ViewZone.monitoring = false
+	emit_signal("character_dead")
+	pass
