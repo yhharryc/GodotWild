@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://game/resources/animations/player/default_font.tres" type="DynamicFont" id=1]
 [ext_resource path="res://game/scripts/GUIManager.gd" type="Script" id=2]
@@ -14,18 +14,7 @@
 [ext_resource path="res://game/resources/SpotLight.gdshader" type="Shader" id=12]
 [ext_resource path="res://game/scripts/gui/LevelSelectionScreen.gd" type="Script" id=13]
 [ext_resource path="res://game/scenes/UI/LevelButton.tscn" type="PackedScene" id=14]
-
-[sub_resource type="ShaderMaterial" id=3]
-render_priority = 5
-shader = ExtResource( 12 )
-shader_param/player_position = Vector2( 0.5, 0.5 )
-shader_param/color = Color( 0, 0, 0, 0.733333 )
-shader_param/MULTIPLIER = 1.0
-shader_param/SCALE = 0.5
-shader_param/SOFTNESS = 1.6
-shader_param/IS_MOVING = false
-shader_param/u_time = 1.0
-shader_param/move_modifier = 0.1
+[ext_resource path="res://game/resources/TitleShaderMaterial.tres" type="Material" id=15]
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -81,6 +70,10 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=9]
 resource_name = "transition_to_level_selection"
 
+[sub_resource type="DynamicFont" id=12]
+size = 25
+font_data = ExtResource( 8 )
+
 [sub_resource type="DynamicFont" id=4]
 size = 30
 font_data = ExtResource( 8 )
@@ -116,7 +109,7 @@ anchor_bottom = 1.0
 script = ExtResource( 2 )
 
 [node name="ShaderLayer" type="ColorRect" parent="CanvasLayer/GUI"]
-material = SubResource( 3 )
+material = ExtResource( 15 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -153,9 +146,22 @@ anims/transition_to_level_selection = SubResource( 9 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="TimePassed" type="Label" parent="CanvasLayer/GUI/InLevelScreen"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/GUI/InLevelScreen"]
 anchor_right = 1.0
-margin_bottom = 14.0
+
+[node name="BestRecord" type="Label" parent="CanvasLayer/GUI/InLevelScreen/VBoxContainer"]
+visible = false
+margin_right = 1200.0
+margin_bottom = 28.0
+theme = ExtResource( 9 )
+custom_fonts/font = SubResource( 12 )
+text = "Best: "
+align = 1
+valign = 1
+
+[node name="TimePassed" type="Label" parent="CanvasLayer/GUI/InLevelScreen/VBoxContainer"]
+margin_right = 1200.0
+margin_bottom = 34.0
 theme = SubResource( 5 )
 text = "00:01:00"
 align = 1
@@ -202,11 +208,22 @@ size_flags_vertical = 4
 theme = ExtResource( 9 )
 text = "Continue"
 
-[node name="BacktoMain" type="Button" parent="CanvasLayer/GUI/InLevelScreen/PauseMenu/PauseMenuBox"]
+[node name="Restart" type="Button" parent="CanvasLayer/GUI/InLevelScreen/PauseMenu/PauseMenuBox"]
 margin_left = 23.0
 margin_top = 210.0
 margin_right = 323.0
 margin_bottom = 261.0
+rect_min_size = Vector2( 300, 30 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource( 9 )
+text = "Restart"
+
+[node name="BacktoMain" type="Button" parent="CanvasLayer/GUI/InLevelScreen/PauseMenu/PauseMenuBox"]
+margin_left = 23.0
+margin_top = 281.0
+margin_right = 323.0
+margin_bottom = 332.0
 rect_min_size = Vector2( 300, 30 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -369,13 +386,14 @@ theme = ExtResource( 9 )
 text = "Quit"
 
 [node name="TitleShaderLayer" type="ColorRect" parent="CanvasLayer/GUI"]
-material = SubResource( 3 )
+material = ExtResource( 15 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 color = Color( 0, 0, 0, 0.568627 )
 
 [connection signal="pressed" from="CanvasLayer/GUI/InLevelScreen/PauseMenu/PauseMenuBox/Resume" to="CanvasLayer/GUI" method="_on_Resume_pressed"]
+[connection signal="pressed" from="CanvasLayer/GUI/InLevelScreen/PauseMenu/PauseMenuBox/Restart" to="CanvasLayer/GUI" method="_on_Restart_pressed"]
 [connection signal="pressed" from="CanvasLayer/GUI/InLevelScreen/PauseMenu/PauseMenuBox/BacktoMain" to="CanvasLayer/GUI" method="_on_BacktoMain_pressed"]
 [connection signal="visibility_changed" from="CanvasLayer/GUI/LevelSelectionScreen" to="CanvasLayer/GUI/LevelSelectionScreen" method="_on_LevelSelectionScreen_visibility_changed"]
 [connection signal="visibility_changed" from="CanvasLayer/GUI/TitleScreen" to="CanvasLayer/GUI/TitleScreen" method="_on_TitleScreen_visibility_changed"]

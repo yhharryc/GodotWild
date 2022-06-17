@@ -70,5 +70,4 @@ maxHoldJumpHeight = 180.0
 maxJumpTime = 0.5
 
 [node name="Friend" parent="." index="5"]
-visible = true
 position = Vector2( 19, 333 )

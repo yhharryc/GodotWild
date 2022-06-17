@@ -1,5 +1,6 @@
 extends KinematicBody2D
 
+export(bool) var can_fade = true
 export(NodePath) var targetPath
 export(int) var record_num = 3
 export(float) var min_speed = 15
@@ -18,7 +19,8 @@ signal fully_invisible
 signal hit_character(source,character)
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	
+	if !can_fade:
+		self.modulate.a8=255
 	$HurtArea/CollisionShape2D.shape = $CollisionShape2D.shape
 	#self.current_alpha = 0
 	target = get_node(targetPath)
@@ -111,14 +113,15 @@ func fade_out():
 	self.is_fading_out = true
 
 func adjust_alpha():
-	var alpha = $Sprite.modulate.a8
+	var alpha = modulate.a8
 	if is_fading_in:
-		$Sprite.modulate.a8 = lerp($Sprite.modulate.a8,255,0.4)
-		if $Sprite.modulate.a8 >=250:
+		modulate.a8 = lerp(modulate.a8,255,0.4)
+		if modulate.a8 >=250:
 			emit_signal("fully_shown")
-	if is_fading_out:
-		$Sprite.modulate.a8 = lerp($Sprite.modulate.a8,0,0.5)
-		if $Sprite.modulate.a8 <=1:
+	
+	if is_fading_out && can_fade:
+		modulate.a8 = lerp(modulate.a8,0,0.5)
+		if modulate.a8 <=1:
 			emit_signal("fully_invisible")
 	
 	pass

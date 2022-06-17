@@ -86,6 +86,7 @@ func _on_level_selected(index):
 	$TitleScreen.visible = false
 	$LevelSelectionScreen.visible = false
 	$InLevelScreen.visible = true
+	update_best_record_ui(index)
 	$InLevelScreen/PauseMenu.visible = false
 	$TitleShaderLayer.visible = false
 	$AnimationPlayer.play("light_shader_fade_in")
@@ -108,7 +109,9 @@ func return_to_title_screen():
 	$InLevelScreen.visible = false
 	$TitleShaderLayer.visible = true
 	$TitleShaderLayer.material.set_shader_param("player_position",Vector2(0.5,0.5))
+	$TitleShaderLayer.material = load("res://game/resources/TitleShaderMaterial.tres")
 	$AnimationPlayer.play("light_shader_fade_in")
+	yield($AnimationPlayer,"animation_finished")
 	
 func _unhandled_input(event):
 	if event.is_action_pressed("escape") and $InLevelScreen.visible:
@@ -124,6 +127,21 @@ func _on_Resume_pressed():
 
 func _on_BacktoMain_pressed():
 	$InLevelScreen/PauseMenu.visible = false
+	$InLevelScreen.visible = false
 	get_tree().paused = false
 	return_to_title_screen()
+	AudioManager.stream = load("res://game/resources/sounds/reload_sound_effect.mp3")
+	AudioManager.play()
 	pass # Replace with function body.
+
+
+func _on_Restart_pressed():
+	$InLevelScreen/PauseMenu.visible = false
+	get_tree().paused = false
+	owner.restart()
+	pass # Replace with function body.
+
+func update_best_record_ui(index):
+	$InLevelScreen/VBoxContainer/BestRecord.visible = SaveManager.level_data.has(index)
+	if SaveManager.level_data.has(index):
+		$InLevelScreen/VBoxContainer/BestRecord.text = "Best: "+SaveManager.level_data[index].time

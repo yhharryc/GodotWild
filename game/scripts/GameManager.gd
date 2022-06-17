@@ -10,6 +10,7 @@ onready var GUI = $CanvasLayer/GUI
 var score_board = {}
 
 func _ready():
+	SaveManager.load_game()
 	pass
 	
 	#load_level(0)
@@ -17,7 +18,8 @@ func _ready():
 func _process(delta):
 	if scene_instance:
 		var time = scene_instance.get_time_passed()
-		$CanvasLayer/GUI/InLevelScreen/TimePassed.text = time.time
+		$CanvasLayer/GUI/InLevelScreen/VBoxContainer/TimePassed.text = time.time
+		
 	pass
 
 
@@ -27,6 +29,7 @@ func load_level(index:int):
 		print_debug("No such index for levels")
 		return
 	level_scene = load(SaveManager.levels[index])
+	GUI.update_best_record_ui(index)	
 	scene_instance = level_scene.instance()
 	scene_instance.index = index
 	scene_instance.connect("level_cleared",self,"_on_current_level_cleared")
@@ -37,8 +40,11 @@ func load_level(index:int):
 
 func _on_current_level_cleared(level,time):
 	print_debug("Level "+String(level.index+1)+" Cleared")
-	SaveManager.level_data[level.index]=[time]
+	
+	if !SaveManager.level_data.has(level.index) or time.raw_time < SaveManager.level_data[level.index].raw_time:
+		SaveManager.level_data[level.index]=time
 	score_board[level.index]= time
+	SaveManager.save_game()
 	var i = level.index+1
 	if level.index+1<SaveManager.levels.size():
 		yield(GUI.show_pop_label("LEVEL "+String(level.index+1)+" CLEARED"),"completed")
@@ -53,13 +59,15 @@ func _on_current_level_cleared(level,time):
 func reload_current():
 	AudioManager.stream = load("res://game/resources/sounds/piano_kjf.mp3")
 	AudioManager.play()
-	scene_instance.is_active = false
-	scene_instance.queue_free()
+	if scene_instance!=null:
+		scene_instance.is_active = false
+		scene_instance.queue_free()
 	##remove_child(scene_instance)
 	load_level(current_level)
 	pass
 
 func restart():
+	
 	GUI.play_transition(self,"reload_current")
 
 func get_player_position():
@@ -68,6 +76,9 @@ func get_player_position():
 	return null
 
 func _on_level_selected(index):
+	#entering music
+	AudioManager.stream = load("res://game/resources/sounds/piano_jri.mp3")
+	AudioManager.play()
 	GUI._on_level_selected(index)
 
 func quit_game():

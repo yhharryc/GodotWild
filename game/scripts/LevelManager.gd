@@ -19,6 +19,7 @@ func _ready():
 	player.connect("character_dead",self,"_on_player_dead")
 	respawnPoint.global_position = player.global_position
 	duration = 0
+	
 	pass # Replace with function body.
 
 
@@ -33,7 +34,8 @@ func get_time_passed():
 func _on_Area2D_body_exited(body):
 	if body.name =="Player"&&is_active:
 		print_debug("NEXT STAGE")
-		emit_signal("level_cleared",self, Time.new(OS.get_system_time_msecs() - start_time))
+		var time = Time.new(OS.get_system_time_msecs() - start_time)
+		emit_signal("level_cleared",self, time)
 	pass # Replace with function body.
 
 func _on_player_dead():
@@ -54,6 +56,7 @@ class Time:
 		pass
 	
 	func msec_to_time(time):
+		raw_time = time
 		msec = fmod(time,1000)
 		var temp = (time - msec)/1000
 		if msec<10:

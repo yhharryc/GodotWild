@@ -1,23 +1,10 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://game/scripts/actors/VelocityLabel.gd" type="Script" id=1]
 [ext_resource path="res://game/scripts/actors/Friend.gd" type="Script" id=2]
 [ext_resource path="res://game/scripts/actors/AccelLabel.gd" type="Script" id=3]
-[ext_resource path="res://icon.png" type="Texture" id=4]
+[ext_resource path="res://game/resources/sprites/friend.png" type="Texture" id=4]
 [ext_resource path="res://game/resources/animations/player/default_font.tres" type="DynamicFont" id=5]
-[ext_resource path="res://game/resources/Friend_shader.tres" type="Shader" id=6]
-
-[sub_resource type="CircleShape2D" id=2]
-radius = 32.0
-
-[sub_resource type="Animation" id=4]
-length = 0.001
-
-[sub_resource type="Animation" id=3]
-resource_name = "friend_fade_in"
-length = 0.3
-
-[sub_resource type="CapsuleShape2D" id=5]
 
 [sub_resource type="Curve" id=7]
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
@@ -39,26 +26,33 @@ scale = 6.0
 scale_curve = SubResource( 8 )
 color = Color( 0, 0, 0, 1 )
 
-[sub_resource type="ShaderMaterial" id=6]
-shader = ExtResource( 6 )
-shader_param/player_position = Vector2( 0.5, 0.5 )
-shader_param/color = Color( 0, 0, 0, 1 )
-shader_param/MULTIPLIER = 1.0
-shader_param/SCALE = 2.5
-shader_param/SOFTNESS = 0.199
-shader_param/IS_MOVING = null
-shader_param/u_time = null
-shader_param/move_modifier = null
+[sub_resource type="CircleShape2D" id=2]
+radius = 32.0
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+
+[sub_resource type="Animation" id=3]
+resource_name = "friend_fade_in"
+length = 0.3
+
+[sub_resource type="CapsuleShape2D" id=5]
 
 [node name="Friend" type="KinematicBody2D"]
+modulate = Color( 1, 1, 1, 0 )
 position = Vector2( 298, 237 )
 collision_layer = 2
 collision_mask = 2
 script = ExtResource( 2 )
 targetPath = NodePath("../Player")
 
+[node name="Particles2D" type="Particles2D" parent="."]
+amount = 40
+explosiveness = 0.31
+randomness = 0.33
+process_material = SubResource( 9 )
+
 [node name="Sprite" type="Sprite" parent="."]
-visible = false
 texture = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -93,24 +87,6 @@ anims/friend_fade_in = SubResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtArea"]
 shape = SubResource( 5 )
-
-[node name="Particles2D" type="Particles2D" parent="."]
-amount = 40
-explosiveness = 0.31
-randomness = 0.33
-process_material = SubResource( 9 )
-
-[node name="ColorRect" type="ColorRect" parent="."]
-material = SubResource( 6 )
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -32.0
-margin_top = -32.0
-margin_right = 32.0
-margin_bottom = 32.0
-rect_pivot_offset = Vector2( 20, 20 )
 
 [connection signal="fully_invisible" from="." to="." method="_on_Friend_fully_invisible"]
 [connection signal="fully_shown" from="." to="." method="_on_Friend_fully_shown"]
