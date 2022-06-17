@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/piano_lkf.mp3-c668e9be13ebcd775039795e57e74acd.mp3str"
+
+[deps]
+
+source_file="res://game/resources/sounds/piano_lkf.mp3"
+dest_files=[ "res://.import/piano_lkf.mp3-c668e9be13ebcd775039795e57e74acd.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

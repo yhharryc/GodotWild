@@ -2,18 +2,21 @@ extends Node
 
 
 onready var fade_ins= {
-	$BlackBackGround : ["color_rect_fade_in","scenescolor_rect_fade_out"],
+	$BlackBackGround : ["color_rect_fade_in","color_rect_fade_out"],
 	
 }
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$TitleShaderLayer.visible = true
+	$InLevelScreen.visible = false
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _process(delta):
+	update_shader_position()
+	pass
 func fade_in(node:Control):
 	##node.modulate(0,0,0,1)
 	node.visible = true
@@ -49,5 +52,78 @@ func play_transition(source,method_to_call =""):
 	$AnimationPlayer.play("color_rect_fade_out")
 	yield($AnimationPlayer,"animation_finished")
 	
+func update_shader_position():
+	if $InLevelScreen.visible:
+		if owner.get_player_position():
+			
+			$ShaderLayer.visible = true
+			$ShaderLayer.material.set_shader_param("player_position",owner.get_player_position())
+		else:
+			$ShaderLayer.visible = false
 	
+
+
+func _on_New_Game_pressed():
+	print_debug("NEW GAME PRESSED")
+	$AnimationPlayer.play("light_shader_fade_out")
+	yield($AnimationPlayer,"animation_finished")
+	#owner.load_level(0)
+	$TitleScreen.visible = false
+	$LevelSelectionScreen.visible = true
+	$InLevelScreen/PauseMenu.visible = false
+	$LevelSelectionScreen.set_buttons_disabled(!self.visible)
 	
+	$AnimationPlayer.play("light_shader_fade_in")
+	yield($AnimationPlayer,"animation_finished")
+	
+
+func _on_level_selected(index):
+
+	$AnimationPlayer.play("light_shader_fade_out")
+	yield($AnimationPlayer,"animation_finished")
+	
+	owner.load_level(index)
+	$TitleScreen.visible = false
+	$LevelSelectionScreen.visible = false
+	$InLevelScreen.visible = true
+	$InLevelScreen/PauseMenu.visible = false
+	$TitleShaderLayer.visible = false
+	$AnimationPlayer.play("light_shader_fade_in")
+	yield($AnimationPlayer,"animation_finished")
+	pass
+
+func _on_Quit_pressed():
+	get_tree().quit()
+	pass # Replace with function body.
+
+func return_to_title_screen():
+	$InLevelScreen/PauseMenu.visible = false
+	$InLevelScreen.visible = false
+	$AnimationPlayer.play("light_shader_fade_out")
+	yield($AnimationPlayer,"animation_finished")
+	owner.quit_game()
+	$TitleScreen.visible = true
+	$LevelSelectionScreen.visible = false
+	$InLevelScreen/PauseMenu.visible = false
+	$InLevelScreen.visible = false
+	$TitleShaderLayer.visible = true
+	$TitleShaderLayer.material.set_shader_param("player_position",Vector2(0.5,0.5))
+	$AnimationPlayer.play("light_shader_fade_in")
+	
+func _unhandled_input(event):
+	if event.is_action_pressed("escape") and $InLevelScreen.visible:
+		$InLevelScreen/PauseMenu.visible = true
+		get_tree().paused = true
+		
+
+func _on_Resume_pressed():
+	get_tree().paused = false
+	$InLevelScreen/PauseMenu.visible = false
+	pass # Replace with function body.
+
+
+func _on_BacktoMain_pressed():
+	$InLevelScreen/PauseMenu.visible = false
+	get_tree().paused = false
+	return_to_title_screen()
+	pass # Replace with function body.

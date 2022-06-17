@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/piano_kjf.mp3-5e4702f12d8ecbd85b8da3efcada795f.mp3str"
+
+[deps]
+
+source_file="res://game/resources/sounds/piano_kjf.mp3"
+dest_files=[ "res://.import/piano_kjf.mp3-5e4702f12d8ecbd85b8da3efcada795f.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

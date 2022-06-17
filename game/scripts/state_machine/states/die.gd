@@ -21,5 +21,6 @@ func handle_gravity():
 	owner.applied_velocity.y -= player.gravity*get_physics_process_delta_time()
 	
 func _on_animation_finished(_anim_name):
-	
-	pass
+	if _anim_name =="player_die":
+		get_tree().root.get_node("Game").restart()
+

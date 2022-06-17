@@ -50,13 +50,14 @@ func calculate_velocity():
 		# if accel and velocity are in different direction, adjust to accel
 		accel = temp
 		if sign(accel.x)!=sign(velocity.x):
-			
-			self.modulate = Color(1,0,0)
+			#change friend color for purpose of debugging
+			#self.modulate = Color(1,0,0)
 			var adjustion = 0.005
 			#lerp(velocity.x,0,adjustion)
 			accel= accel*(1+get_vector_to_target().distance_to(Vector2())*adjustion)
 		else:
-			self_modulate =  Color(0,0,0)
+			#self_modulate =  Color(0,0,0)
+			pass
 		
 
 

@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://game/scenes/actors/LockedBlock.tscn" type="PackedScene" id=1]
+[ext_resource path="res://game/scripts/actors/HarmfulBlock.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 32, 32 )
+
+[sub_resource type="RectangleShape2D" id=2]
+
+[node name="HarmfulBlock" instance=ExtResource( 1 )]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource( 2 )
+
+[node name="HarmfulArea" type="Area2D" parent="." index="2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HarmfulArea" index="0"]
+shape = SubResource( 1 )
+
+[node name="FriendLockArea" type="Area2D" parent="." index="3"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FriendLockArea" index="0"]
+shape = SubResource( 2 )
+
+[connection signal="body_entered" from="HarmfulArea" to="." method="_on_HarmfulArea_body_entered"]
+[connection signal="body_entered" from="FriendLockArea" to="." method="_on_FriendLockArea_body_entered"]

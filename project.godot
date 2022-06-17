@@ -36,6 +36,11 @@ config/name="Watch Your Back Godot"
 run/main_scene="res://game/scenes/Game.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+AudioManager="*res://game/scripts/AudioManager.gd"
+SaveManager="*res://game/scripts/SaveManager.gd"
+
 [display]
 
 window/size/width=1200
@@ -72,9 +77,9 @@ jump={
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
-debug_key={
+escape={
 "deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":96,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777217,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
 

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/piano_jri.mp3-894147ec10284babd214013d5ed31f4a.mp3str"
+
+[deps]
+
+source_file="res://game/resources/sounds/piano_jri.mp3"
+dest_files=[ "res://.import/piano_jri.mp3-894147ec10284babd214013d5ed31f4a.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
