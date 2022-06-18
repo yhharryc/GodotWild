@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/running_on_the_gravel.mp3-172b64dc0fa502408a3e5bcdfcb9cb6e.mp3str"
+
+[deps]
+
+source_file="res://game/resources/sounds/running_on_the_gravel.mp3"
+dest_files=[ "res://.import/running_on_the_gravel.mp3-172b64dc0fa502408a3e5bcdfcb9cb6e.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

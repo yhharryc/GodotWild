@@ -7,6 +7,7 @@ func enter():
 	play_anim("player_move")
 	var input_direction = get_input_direction()
 	update_look_direction(input_direction)
+	owner.play("res://game/resources/sounds/running_on_the_gravel.mp3",true)
 	#owner.get_node("AnimationPlayer").play("walk")
 
 
@@ -42,3 +43,5 @@ func move(speed, direction):
 #		return
 #	return owner.get_slide_collision(0)
 
+func exit():
+	owner.stop("res://game/resources/sounds/running_on_the_gravel.mp3")

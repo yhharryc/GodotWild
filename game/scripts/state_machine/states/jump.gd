@@ -41,6 +41,7 @@ func update(_delta):
 		play_anim("player_fall")
 	yield(owner,"character_moved")
 	if owner.is_grounded():
+		owner.play("res://game/resources/sounds/fall.mp3",false)
 		emit_signal("finished","idle")
 	pass
 	

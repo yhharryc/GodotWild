@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/fall.mp3-342883b3761ecc14b05901de95eca4ad.mp3str"
+
+[deps]
+
+source_file="res://game/resources/sounds/fall.mp3"
+dest_files=[ "res://.import/fall.mp3-342883b3761ecc14b05901de95eca4ad.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

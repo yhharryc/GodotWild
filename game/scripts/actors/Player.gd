@@ -96,3 +96,9 @@ func _on_character_hit(source,character):
 	$ViewZone.monitoring = false
 	emit_signal("character_dead")
 	pass
+
+func play(filePath, loop):
+	$AudioPlayers.play(filePath,loop)
+
+func stop(filePath):
+	$AudioPlayers.stop(filePath)

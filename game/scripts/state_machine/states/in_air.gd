@@ -29,6 +29,7 @@ func update(_delta):
 	
 	update_look_direction(input_direction)
 	if player.is_grounded():
+		owner.play("res://game/resources/sounds/fall.mp3",false)
 		emit_signal("finished","idle")
 	pass
 

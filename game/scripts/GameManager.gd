@@ -11,6 +11,7 @@ var score_board = {}
 
 func _ready():
 	SaveManager.load_game()
+	$BGMPlayer.play()
 	pass
 	
 	#load_level(0)
@@ -77,9 +78,12 @@ func get_player_position():
 
 func _on_level_selected(index):
 	#entering music
+	$BGMPlayer.stop()
 	AudioManager.stream = load("res://game/resources/sounds/piano_jri.mp3")
 	AudioManager.play()
 	GUI._on_level_selected(index)
+	yield(AudioManager,"finished")
+	$BGMPlayer.play()
 
 func quit_game():
 	

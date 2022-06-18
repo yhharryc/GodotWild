@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://game/resources/animations/player/default_font.tres" type="DynamicFont" id=1]
 [ext_resource path="res://game/scripts/GUIManager.gd" type="Script" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://game/scripts/gui/LevelSelectionScreen.gd" type="Script" id=13]
 [ext_resource path="res://game/scenes/UI/LevelButton.tscn" type="PackedScene" id=14]
 [ext_resource path="res://game/resources/TitleShaderMaterial.tres" type="Material" id=15]
+[ext_resource path="res://game/resources/sounds/rain_bgm.mp3" type="AudioStream" id=16]
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -391,6 +392,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 color = Color( 0, 0, 0, 0.568627 )
+
+[node name="BGMPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 16 )
+volume_db = -5.0
 
 [connection signal="pressed" from="CanvasLayer/GUI/InLevelScreen/PauseMenu/PauseMenuBox/Resume" to="CanvasLayer/GUI" method="_on_Resume_pressed"]
 [connection signal="pressed" from="CanvasLayer/GUI/InLevelScreen/PauseMenu/PauseMenuBox/Restart" to="CanvasLayer/GUI" method="_on_Restart_pressed"]
