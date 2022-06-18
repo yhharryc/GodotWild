@@ -92,6 +92,8 @@ position = Vector2( 226, 809 )
 [node name="Friend" parent="." instance=ExtResource( 4 )]
 position = Vector2( 88, 817 )
 
+[node name="Collectables" type="Node2D" parent="."]
+
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
 current = true

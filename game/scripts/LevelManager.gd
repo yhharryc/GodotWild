@@ -44,6 +44,10 @@ func _on_player_dead():
 
 
 
+func connect_gems_to_friends(gem):
+	gem.connect("gem_collected",$Friend,"_on_gem_collected")
+
+
 class Time:
 	var raw_time
 	var hour

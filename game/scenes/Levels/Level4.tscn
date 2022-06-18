@@ -16,8 +16,8 @@ scale = Vector2( 1.99415, 3.85553 )
 position = Vector2( 674, 808 )
 scale = Vector2( 1.19415, 1.77553 )
 
-[node name="Player" parent="." index="4"]
+[node name="Player" parent="." index="5"]
 position = Vector2( 57, 820 )
 
-[node name="Friend" parent="." index="5"]
+[node name="Friend" parent="." index="6"]
 position = Vector2( 1147, 822 )

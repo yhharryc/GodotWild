@@ -157,6 +157,10 @@ func _on_Friend_fully_invisible():
 	pass # Replace with function body.
 
 
+func _on_gem_collected():
+	self.is_fading_in = true
+	pass
+
 func _on_HurtArea_body_entered(body):
 	if body == target&&is_hurtful:
 		emit_signal("hit_character",self,body)

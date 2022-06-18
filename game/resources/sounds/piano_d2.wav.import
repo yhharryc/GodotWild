@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/piano_d2.wav-2b810b31cb47ef887786baed9dde0350.sample"
+
+[deps]
+
+source_file="res://game/resources/sounds/piano_d2.wav"
+dest_files=[ "res://.import/piano_d2.wav-2b810b31cb47ef887786baed9dde0350.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
