@@ -7,7 +7,9 @@ func enter():
 	play_anim("player_move")
 	var input_direction = get_input_direction()
 	update_look_direction(input_direction)
-	owner.play("res://game/resources/sounds/running_on_the_gravel.mp3",true)
+	owner.get_node("AudioStreamPlayer2D").stream = load("res://game/resources/sounds/step_left.mp3")
+	owner.get_node("AudioStreamPlayer2D").play()
+	#owner.play("res://game/resources/sounds/running_on_the_gravel.mp3",true)
 	#owner.get_node("AnimationPlayer").play("walk")
 
 
@@ -44,4 +46,17 @@ func move(speed, direction):
 #	return owner.get_slide_collision(0)
 
 func exit():
-	owner.stop("res://game/resources/sounds/running_on_the_gravel.mp3")
+	owner.get_node("AudioStreamPlayer2D").stop()
+	owner.get_node("AudioStreamPlayer2D").stream = null
+	
+	#owner.stop("res://game/resources/sounds/running_on_the_gravel.mp3")
+	
+
+func _on_AudioStreamPlayer2D_finished():
+	if owner.get_node("AudioStreamPlayer2D").stream ==load("res://game/resources/sounds/step_left.mp3"):
+		owner.get_node("AudioStreamPlayer2D").stream = load("res://game/resources/sounds/step_right.mp3")
+		owner.get_node("AudioStreamPlayer2D").play()
+	elif owner.get_node("AudioStreamPlayer2D").stream ==load("res://game/resources/sounds/step_right.mp3"):
+		owner.get_node("AudioStreamPlayer2D").stream = load("res://game/resources/sounds/step_play.mp3")
+		owner.get_node("AudioStreamPlayer2D").play()
+	pass # Replace with function body.

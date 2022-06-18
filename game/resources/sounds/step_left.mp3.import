@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/step_left.mp3-d394f06cbb65e5cf65923cdd8d8d82cf.mp3str"
+
+[deps]
+
+source_file="res://game/resources/sounds/step_left.mp3"
+dest_files=[ "res://.import/step_left.mp3-d394f06cbb65e5cf65923cdd8d8d82cf.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
