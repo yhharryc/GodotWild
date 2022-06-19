@@ -27,6 +27,7 @@ func _on_LevelSelectionScreen_visibility_changed():
 	grid.get_child(0).is_locked = false
 	for level_index in SaveManager.level_data.keys():
 		grid.get_child(level_index).is_locked = false
+		grid.get_child(level_index).best_score = SaveManager.level_data[level_index].time
 		pass
 	SaveManager.levels
 	pass # Replace with function body.

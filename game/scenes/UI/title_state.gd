@@ -19,6 +19,8 @@ func enter():
 	pass
 
 func _on_New_Game_pressed():
+	
+	
 	owner.GUI.anim.play("light_shader_fade_out")
 	yield(owner.GUI.anim,"animation_finished")
 

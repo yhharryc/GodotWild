@@ -14,7 +14,7 @@ tile_data = PoolIntArray( -1, 0, 0, -65536, 0, 0, -65535, 0, 0, -65534, 0, 0, -6
 
 [node name="HarmfulBlock" parent="Blocks" index="0" instance=ExtResource( 2 )]
 position = Vector2( 240, 357 )
-scale = Vector2( 6.53333, 2.30667 )
+scale = Vector2( 6.53333, 2.66667 )
 
 [node name="HarmfulBlock2" parent="Blocks" index="1" instance=ExtResource( 2 )]
 position = Vector2( 497, 782 )
@@ -42,3 +42,5 @@ position = Vector2( 143, 816 )
 [node name="Friend" parent="." index="5"]
 position = Vector2( 34, 821 )
 speed_param = 1.9
+
+[editable path="Blocks/HarmfulBlock"]

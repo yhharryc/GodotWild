@@ -27,6 +27,10 @@ func _on_HarmfulArea_body_entered(body):
 func _on_FriendLockArea_body_entered(body):
 	if body.name == "Friend":
 		print_debug("Play shattered animation, sound")
+		$Sprite.visible = false
+		$AudioStreamPlayer2D.play()
+		$Particles2D.emitting = true
+		yield($AudioStreamPlayer2D,"finished")
 		queue_free()
 	pass
 	pass # Replace with function body.

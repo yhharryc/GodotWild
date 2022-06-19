@@ -50,8 +50,8 @@ SaveManager="*res://game/scripts/SaveManager.gd"
 
 [display]
 
-window/size/width=1200
-window/size/height=900
+window/size/width=900
+window/size/height=675
 window/size/resizable=false
 
 [global]

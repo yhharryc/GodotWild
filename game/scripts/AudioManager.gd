@@ -1,5 +1,4 @@
 extends AudioStreamPlayer
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+func _ready():
+	AudioManager.pause_mode=Node.PAUSE_MODE_PROCESS

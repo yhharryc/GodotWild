@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/shatter.mp3-55d080e89e7ad4c710b98df095fe9ff9.mp3str"
+
+[deps]
+
+source_file="res://game/resources/sounds/shatter.mp3"
+dest_files=[ "res://.import/shatter.mp3-55d080e89e7ad4c710b98df095fe9ff9.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

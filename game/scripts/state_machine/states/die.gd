@@ -7,6 +7,7 @@ extends PlayerState
 
 func enter():
 	play_anim("player_die")
+	
 	owner.applied_velocity = Vector2()
 	owner.find_node("Light2D",true,false).enabled = false
 	pass

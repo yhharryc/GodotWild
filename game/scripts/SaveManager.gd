@@ -11,10 +11,11 @@ func _ready():
 		"res://game/scenes/Levels/Level1.tscn",
 		"res://game/scenes/Levels/Level2.tscn",
 		"res://game/scenes/Levels/Level3.tscn",
+		"res://game/scenes/Levels/Level_JumpHighLow.tscn",
 		"res://game/scenes/Levels/Level4.tscn",
 		"res://game/scenes/Levels/Level5.tscn",
-		"res://game/scenes/Levels/Level6.tscn",
-		"res://game/scenes/Levels/Level7.tscn"
+		"res://game/scenes/Levels/Level7.tscn",
+		"res://game/scenes/Levels/Level6.tscn"
 	]
 	pass # Replace with function body.
 

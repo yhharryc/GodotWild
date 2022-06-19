@@ -1,8 +1,12 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://game/resources/animations/player/new_theme.tres" type="Theme" id=1]
 [ext_resource path="res://game/scripts/gui/LevelButton.gd" type="Script" id=2]
 [ext_resource path="res://game/resources/gui/locked_panel.png" type="Texture" id=3]
+[ext_resource path="res://game/resources/gui/fonts/Xim-Sans-Handwritten.ttf" type="DynamicFontData" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 4 )
 
 [node name="LevelButton" type="TextureButton"]
 rect_min_size = Vector2( 180, 160 )
@@ -21,5 +25,16 @@ valign = 1
 [node name="TextureRect" type="TextureRect" parent="."]
 margin_right = 40.0
 margin_bottom = 40.0
+
+[node name="RecordLabel" type="Label" parent="."]
+margin_left = 33.0
+margin_top = 98.0
+margin_right = 138.0
+margin_bottom = 116.0
+theme = ExtResource( 1 )
+custom_fonts/font = SubResource( 1 )
+text = "Best: 00:00:00:000"
+align = 1
+valign = 1
 
 [connection signal="pressed" from="." to="." method="_on_LevelButton_pressed"]

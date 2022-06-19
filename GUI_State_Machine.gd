@@ -25,6 +25,8 @@ func return_to_title_screen():
 	pass
 
 func _on_BacktoMain_pressed():
+	AudioManager.stream = load("res://game/resources/sounds/piano_d2.mp3")
+	AudioManager.play()
 	
 	_change_state("title_screen")
 	

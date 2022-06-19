@@ -100,7 +100,8 @@ extra_spacing_bottom = 30
 extra_spacing_char = 20
 font_data = ExtResource( 8 )
 
-[node name="Game" type="Node"]
+[node name="Game" type="Node2D"]
+scale = Vector2( 0.75, 0.75 )
 script = ExtResource( 5 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -181,7 +182,7 @@ align = 1
 valign = 1
 
 [node name="TimePassed" type="Label" parent="CanvasLayer/GUI/InLevelScreen/VBoxContainer"]
-margin_right = 1200.0
+margin_right = 900.0
 margin_bottom = 34.0
 theme = SubResource( 5 )
 text = "00:01:00"

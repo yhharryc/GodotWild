@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/piano_d2.mp3-0260bd33d9dcc16e7729c6f710458e3a.mp3str"
+
+[deps]
+
+source_file="res://game/resources/sounds/piano_d2.mp3"
+dest_files=[ "res://.import/piano_d2.mp3-0260bd33d9dcc16e7729c6f710458e3a.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

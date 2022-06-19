@@ -42,6 +42,8 @@ func exit():
 	owner.GUI.anim.play("light_shader_fade_out")
 	yield(owner.GUI.anim,"animation_finished")
 	get_tree().paused = false
+	
+
 	owner.owner.quit_game()
 	inLevel.visible = false
 	shader.visible = false
