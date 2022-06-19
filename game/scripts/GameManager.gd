@@ -5,7 +5,7 @@ var current_node
 var level_scene
 var scene_instance
 
-	
+
 onready var GUI = $CanvasLayer/GUI
 var score_board = {}
 
@@ -53,7 +53,7 @@ func _on_current_level_cleared(level,time):
 		load_level(i)
 	else:
 		yield(GUI.show_pop_label("ALL LEVELS CLEARED"),"completed")
-		GUI.return_to_title_screen()
+		$CanvasLayer/GUI/GUI_State_Machine.return_to_title_screen()
 		#print_debug("GAME OVER")
 	pass
 
@@ -81,12 +81,15 @@ func _on_level_selected(index):
 	$BGMPlayer.stop()
 	AudioManager.stream = load("res://game/resources/sounds/piano_jri.mp3")
 	AudioManager.play()
-	GUI._on_level_selected(index)
+	$CanvasLayer/GUI/GUI_State_Machine._on_level_selected(index)
+	load_level(index)
+	GUI.update_best_record_ui(index)
+	#GUI._on_level_selected(index)
 	yield(AudioManager,"finished")
 	$BGMPlayer.play()
 
 func quit_game():
-	
+	scene_instance.disconnect("level_cleared",self,"_on_current_level_cleared")
 	scene_instance.queue_free()
 	scene_instance = null
 	pass

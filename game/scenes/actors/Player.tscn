@@ -183,7 +183,7 @@ position = Vector2( 0, -12 )
 polygon = PoolVector2Array( 0, 0, 400, -60, 400, 60, 0, 40 )
 
 [node name="Light2D" type="Light2D" parent="ViewZone"]
-position = Vector2( 206.014, -3.19173 )
+position = Vector2( 200.088, -0.983559 )
 rotation = -0.0409273
 texture = ExtResource( 13 )
 

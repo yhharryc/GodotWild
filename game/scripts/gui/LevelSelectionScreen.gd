@@ -9,6 +9,7 @@ func _ready():
 	for child in grid.get_children():		
 		child.index = i
 		child.connect("level_selected",owner,"_on_level_selected")
+		#child.connect("level_selected",owner.get_node("CanvasLayer/GUI/GUI_State_Machine"),"_on_level_selected")
 		child.connect("level_selected",self,"_on_level_selected")
 		i+=1
 	pass # Replace with function body.

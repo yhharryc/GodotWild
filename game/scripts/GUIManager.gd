@@ -56,12 +56,7 @@ func play_transition(source,method_to_call =""):
 	
 func update_shader_position():
 	if $InLevelScreen.visible:
-		if owner.get_player_position():
-			
-			$ShaderLayer.visible = true
-			$ShaderLayer.material.set_shader_param("player_position",owner.get_player_position())
-		else:
-			$ShaderLayer.visible = false
+		pass
 	
 
 
@@ -90,10 +85,10 @@ func _on_level_selected(index):
 	$LevelSelectionScreen.visible = false
 	$InLevelScreen.visible = true
 	update_best_record_ui(index)
-	$InLevelScreen/PauseMenu.visible = false
-	$TitleShaderLayer.visible = false
-	$AnimationPlayer.play("light_shader_fade_in")
-	yield($AnimationPlayer,"animation_finished")
+#	$InLevelScreen/PauseMenu.visible = false
+#	$TitleShaderLayer.visible = false
+#	$AnimationPlayer.play("light_shader_fade_in")
+#	yield($AnimationPlayer,"animation_finished")
 	pass
 
 func _on_Quit_pressed():
@@ -101,25 +96,23 @@ func _on_Quit_pressed():
 	pass # Replace with function body.
 
 func return_to_title_screen():
-	$InLevelScreen/PauseMenu.visible = false
-	$InLevelScreen.visible = false
-	$AnimationPlayer.play("light_shader_fade_out")
-	yield($AnimationPlayer,"animation_finished")
-	owner.quit_game()
-	$TitleScreen.visible = true
-	$LevelSelectionScreen.visible = false
-	$InLevelScreen/PauseMenu.visible = false
-	$InLevelScreen.visible = false
-	$TitleShaderLayer.visible = true
-	$TitleShaderLayer.material.set_shader_param("player_position",Vector2(0.5,0.5))
-	$TitleShaderLayer.material = load("res://game/resources/TitleShaderMaterial.tres")
-	$AnimationPlayer.play("light_shader_fade_in")
-	yield($AnimationPlayer,"animation_finished")
+#	$InLevelScreen/PauseMenu.visible = false
+#	$InLevelScreen.visible = false
+#	$AnimationPlayer.play("light_shader_fade_out")
+#	yield($AnimationPlayer,"animation_finished")
 	
-func _unhandled_input(event):
-	if event.is_action_pressed("escape") and $InLevelScreen.visible:
-		$InLevelScreen/PauseMenu.visible = true
-		get_tree().paused = true
+	owner.quit_game()
+#	$TitleScreen.visible = true
+#	$LevelSelectionScreen.visible = false
+#	$InLevelScreen/PauseMenu.visible = false
+#	$InLevelScreen.visible = false
+#	$TitleShaderLayer.visible = true
+#	$TitleShaderLayer.material.set_shader_param("player_position",Vector2(0.5,0.5))
+#	$TitleShaderLayer.material = load("res://game/resources/TitleShaderMaterial.tres")
+#	$AnimationPlayer.play("light_shader_fade_in")
+#	yield($AnimationPlayer,"animation_finished")
+	
+
 		
 
 func _on_Resume_pressed():

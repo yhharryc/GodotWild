@@ -10,10 +10,17 @@ func enter ():
 	owner.GUI.anim.play("light_shader_fade_in")
 	yield(owner.GUI.anim,"animation_finished")
 	
-	
-func update(_delta):
-	pass
+
 	
 func exit():
-	level_selection.visible=true
-	pass
+	level_selection.visible=false
+	owner.GUI.anim.play("light_shader_fade_out")
+	yield(owner.GUI.anim,"animation_finished")
+	
+	
+func handle_input(event):
+	if event.is_action_pressed("escape") :
+		print_debug("hello")
+		emit_signal("finished","title_screen")
+	elif event.is_action_pressed("right_click"):
+		emit_signal("finished","title_screen")

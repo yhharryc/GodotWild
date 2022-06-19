@@ -106,17 +106,27 @@ script = ExtResource( 5 )
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="GUI" type="Control" parent="CanvasLayer"]
+pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 2 )
 
 [node name="GUI_State_Machine" parent="CanvasLayer/GUI" instance=ExtResource( 17 )]
+pause_mode = 2
 
 [node name="TitleScreen" parent="CanvasLayer/GUI/GUI_State_Machine" index="0"]
 title_path = NodePath("../../TitleScreen")
+titleShaderPath = NodePath("../../TitleShaderLayer")
 
 [node name="LevelSelection" parent="CanvasLayer/GUI/GUI_State_Machine" index="1"]
 level_selection_path = NodePath("../../LevelSelectionScreen")
+
+[node name="InLevel" parent="CanvasLayer/GUI/GUI_State_Machine" index="2"]
+pause_mode = 2
+inLevelPath = NodePath("../../InLevelScreen")
+titleShaderPath = NodePath("../../TitleShaderLayer")
+pausePath = NodePath("../../InLevelScreen/PauseMenu")
+shaderPath = NodePath("../../ShaderLayer")
 
 [node name="ShaderLayer" type="ColorRect" parent="CanvasLayer/GUI"]
 visible = false
@@ -178,7 +188,6 @@ text = "00:01:00"
 align = 1
 
 [node name="PauseMenu" type="Control" parent="CanvasLayer/GUI/InLevelScreen"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 
@@ -243,6 +252,7 @@ theme = ExtResource( 9 )
 text = "Exit to Menu"
 
 [node name="LevelSelectionScreen" type="Control" parent="CanvasLayer/GUI"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 13 )
@@ -411,7 +421,7 @@ volume_db = -5.0
 
 [connection signal="pressed" from="CanvasLayer/GUI/InLevelScreen/PauseMenu/PauseMenuBox/Resume" to="CanvasLayer/GUI" method="_on_Resume_pressed"]
 [connection signal="pressed" from="CanvasLayer/GUI/InLevelScreen/PauseMenu/PauseMenuBox/Restart" to="CanvasLayer/GUI" method="_on_Restart_pressed"]
-[connection signal="pressed" from="CanvasLayer/GUI/InLevelScreen/PauseMenu/PauseMenuBox/BacktoMain" to="CanvasLayer/GUI" method="_on_BacktoMain_pressed"]
+[connection signal="pressed" from="CanvasLayer/GUI/InLevelScreen/PauseMenu/PauseMenuBox/BacktoMain" to="CanvasLayer/GUI/GUI_State_Machine" method="_on_BacktoMain_pressed"]
 [connection signal="visibility_changed" from="CanvasLayer/GUI/LevelSelectionScreen" to="CanvasLayer/GUI/LevelSelectionScreen" method="_on_LevelSelectionScreen_visibility_changed"]
 [connection signal="visibility_changed" from="CanvasLayer/GUI/TitleScreen" to="CanvasLayer/GUI/TitleScreen" method="_on_TitleScreen_visibility_changed"]
 [connection signal="pressed" from="CanvasLayer/GUI/TitleScreen/VBoxContainer/HBoxContainer/New Game" to="CanvasLayer/GUI" method="_on_New_Game_pressed"]
