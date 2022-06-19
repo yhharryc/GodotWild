@@ -3,7 +3,7 @@ class_name State
 
 signal finished(next_state_name)
 
-onready var player = get_parent().get_node(get_parent().player)
+
 func enter():
 	pass
 
@@ -19,11 +19,6 @@ func update(_delta):
 func _on_animation_finished(_anim_name):
 	pass
 
-func play_anim(anim_name):
-	var anim_player:AnimationPlayer
-	anim_player = player.get_node("AnimationPlayer")
-	anim_player.play(anim_name)
-	pass
 
 func _on_character_dead():
 	

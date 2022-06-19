@@ -13,7 +13,7 @@ position = Vector2( 563, 577 )
 scale = Vector2( 1, 3.36 )
 
 [node name="HarmfulBlock3" parent="Blocks" index="1" instance=ExtResource( 2 )]
-position = Vector2( 234, 486 )
+position = Vector2( 236, 458 )
 scale = Vector2( 1, 3.36 )
 
 [node name="HarmfulBlock4" parent="Blocks" index="2" instance=ExtResource( 2 )]
@@ -29,4 +29,4 @@ position = Vector2( 895, 653 )
 scale = Vector2( 1, 3.36 )
 
 [node name="Friend" parent="." index="5"]
-position = Vector2( 1025, 539 )
+position = Vector2( 1025, 520 )

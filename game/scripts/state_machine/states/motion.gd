@@ -1,4 +1,4 @@
-extends State
+extends PlayerState
 
 var speed
 var velocity setget set_velocity,get_velocity

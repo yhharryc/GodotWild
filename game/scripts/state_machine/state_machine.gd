@@ -17,6 +17,7 @@ func _ready():
 		var err = child.connect("finished", self, "_change_state")
 		if err:
 			printerr(err)
+	
 	initialize(start_state)
 
 
@@ -41,9 +42,9 @@ func _unhandled_input(event):
 
 
 func _physics_process(delta):
-	yield(owner,"velocity_recorded")
+
 	current_state.update(delta)
-	emit_signal("state_processed",delta)
+
 
 
 func _on_animation_finished(anim_name):

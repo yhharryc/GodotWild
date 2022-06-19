@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://game/resources/animations/player/default_font.tres" type="DynamicFont" id=1]
 [ext_resource path="res://game/scripts/GUIManager.gd" type="Script" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://game/scenes/UI/LevelButton.tscn" type="PackedScene" id=14]
 [ext_resource path="res://game/resources/TitleShaderMaterial.tres" type="Material" id=15]
 [ext_resource path="res://game/resources/sounds/rain_bgm.mp3" type="AudioStream" id=16]
+[ext_resource path="res://game/scenes/UI/GUI_State_Machine.tscn" type="PackedScene" id=17]
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -109,7 +110,16 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 2 )
 
+[node name="GUI_State_Machine" parent="CanvasLayer/GUI" instance=ExtResource( 17 )]
+
+[node name="TitleScreen" parent="CanvasLayer/GUI/GUI_State_Machine" index="0"]
+title_path = NodePath("../../TitleScreen")
+
+[node name="LevelSelection" parent="CanvasLayer/GUI/GUI_State_Machine" index="1"]
+level_selection_path = NodePath("../../LevelSelectionScreen")
+
 [node name="ShaderLayer" type="ColorRect" parent="CanvasLayer/GUI"]
+visible = false
 material = ExtResource( 15 )
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -168,6 +178,7 @@ text = "00:01:00"
 align = 1
 
 [node name="PauseMenu" type="Control" parent="CanvasLayer/GUI/InLevelScreen"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 
@@ -241,58 +252,59 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -400.0
-margin_top = -235.0
-margin_right = 400.0
-margin_bottom = 235.0
+margin_left = -408.0
+margin_top = -167.5
+margin_right = 408.0
+margin_bottom = 167.5
 rect_pivot_offset = Vector2( 400, 225 )
 custom_constants/vseparation = 15
 custom_constants/hseparation = 30
-columns = 3
+columns = 4
 
 [node name="LevelButton" parent="CanvasLayer/GUI/LevelSelectionScreen/GridContainer" instance=ExtResource( 14 )]
+margin_right = 180.0
+margin_bottom = 160.0
 
 [node name="LevelButton2" parent="CanvasLayer/GUI/LevelSelectionScreen/GridContainer" instance=ExtResource( 14 )]
-margin_left = 280.0
-margin_right = 530.0
+margin_left = 210.0
+margin_right = 390.0
+margin_bottom = 160.0
 
 [node name="LevelButton3" parent="CanvasLayer/GUI/LevelSelectionScreen/GridContainer" instance=ExtResource( 14 )]
-margin_left = 560.0
-margin_right = 810.0
+margin_left = 420.0
+margin_right = 600.0
+margin_bottom = 160.0
 
 [node name="LevelButton4" parent="CanvasLayer/GUI/LevelSelectionScreen/GridContainer" instance=ExtResource( 14 )]
-margin_top = 175.0
-margin_bottom = 335.0
+margin_left = 630.0
+margin_right = 810.0
+margin_bottom = 160.0
 
 [node name="LevelButton5" parent="CanvasLayer/GUI/LevelSelectionScreen/GridContainer" instance=ExtResource( 14 )]
-margin_left = 280.0
 margin_top = 175.0
-margin_right = 530.0
+margin_right = 180.0
 margin_bottom = 335.0
 
 [node name="LevelButton6" parent="CanvasLayer/GUI/LevelSelectionScreen/GridContainer" instance=ExtResource( 14 )]
-margin_left = 560.0
+margin_left = 210.0
+margin_top = 175.0
+margin_right = 390.0
+margin_bottom = 335.0
+
+[node name="LevelButton7" parent="CanvasLayer/GUI/LevelSelectionScreen/GridContainer" instance=ExtResource( 14 )]
+margin_left = 420.0
+margin_top = 175.0
+margin_right = 600.0
+margin_bottom = 335.0
+
+[node name="LevelButton8" parent="CanvasLayer/GUI/LevelSelectionScreen/GridContainer" instance=ExtResource( 14 )]
+margin_left = 630.0
 margin_top = 175.0
 margin_right = 810.0
 margin_bottom = 335.0
 
-[node name="LevelButton7" parent="CanvasLayer/GUI/LevelSelectionScreen/GridContainer" instance=ExtResource( 14 )]
-margin_top = 350.0
-margin_bottom = 510.0
-
-[node name="LevelButton8" parent="CanvasLayer/GUI/LevelSelectionScreen/GridContainer" instance=ExtResource( 14 )]
-margin_left = 280.0
-margin_top = 350.0
-margin_right = 530.0
-margin_bottom = 510.0
-
-[node name="LevelButton9" parent="CanvasLayer/GUI/LevelSelectionScreen/GridContainer" instance=ExtResource( 14 )]
-margin_left = 560.0
-margin_top = 350.0
-margin_right = 810.0
-margin_bottom = 510.0
-
 [node name="TitleScreen" type="Control" parent="CanvasLayer/GUI"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 7 )
@@ -403,4 +415,7 @@ volume_db = -5.0
 [connection signal="visibility_changed" from="CanvasLayer/GUI/LevelSelectionScreen" to="CanvasLayer/GUI/LevelSelectionScreen" method="_on_LevelSelectionScreen_visibility_changed"]
 [connection signal="visibility_changed" from="CanvasLayer/GUI/TitleScreen" to="CanvasLayer/GUI/TitleScreen" method="_on_TitleScreen_visibility_changed"]
 [connection signal="pressed" from="CanvasLayer/GUI/TitleScreen/VBoxContainer/HBoxContainer/New Game" to="CanvasLayer/GUI" method="_on_New_Game_pressed"]
+[connection signal="pressed" from="CanvasLayer/GUI/TitleScreen/VBoxContainer/HBoxContainer/New Game" to="CanvasLayer/GUI/GUI_State_Machine/TitleScreen" method="_on_New_Game_pressed"]
 [connection signal="pressed" from="CanvasLayer/GUI/TitleScreen/VBoxContainer/HBoxContainer/Quit" to="CanvasLayer/GUI" method="_on_Quit_pressed"]
+
+[editable path="CanvasLayer/GUI/GUI_State_Machine"]

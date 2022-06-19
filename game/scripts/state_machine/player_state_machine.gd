@@ -43,3 +43,10 @@ func _on_character_dead():
 	if current_state != states_map["die"]:
 		current_state.emit_signal("finished","die")
 	pass
+
+
+func _physics_process(delta):
+	yield(owner,"velocity_recorded")
+	#._physics_process(delta)
+	#current_state.update(delta)
+	emit_signal("state_processed",delta)

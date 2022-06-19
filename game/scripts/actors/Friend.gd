@@ -19,6 +19,7 @@ signal fully_invisible
 signal hit_character(source,character)
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$Sprite.texture = load("res://game/resources/sprites/friend.png")
 	if !can_fade:
 		self.modulate.a8=255
 	$HurtArea/CollisionShape2D.shape = $CollisionShape2D.shape
@@ -89,10 +90,13 @@ func _on_player_spotted_self(player,friend):
 	fade_in()
 	yield(self,"fully_shown")
 	set_physics_process(false)
+	$Sprite.texture =load ("res://game/resources/sprites/friend_still.png")
+	
 	pass
 	
 func _on_exited_player_view(player,friend):
 	set_physics_process(true)
+	$Sprite.texture = load("res://game/resources/sprites/friend.png")
 	fade_out()
 
 	pass
@@ -120,7 +124,7 @@ func adjust_alpha():
 			emit_signal("fully_shown")
 	
 	if is_fading_out && can_fade:
-		modulate.a8 = lerp(modulate.a8,0,0.5)
+		modulate.a8 = lerp(modulate.a8,0,0.2)
 		if modulate.a8 <=1:
 			emit_signal("fully_invisible")
 	
@@ -164,5 +168,6 @@ func _on_gem_collected():
 func _on_HurtArea_body_entered(body):
 	if body == target&&is_hurtful:
 		emit_signal("hit_character",self,body)
+		self.is_fading_in = true
 		
 	pass # Replace with function body.

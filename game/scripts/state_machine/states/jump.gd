@@ -9,7 +9,7 @@ var momentum_left
 func enter():
 	play_anim("player_jump")
 	owner.jump_count+=1
-	self.velocity.y = 0
+	self.applied_velocity.y = 0
 	momentum_left = owner.maxJumpVelocity - owner.initialJumpVelocity
 	#self.velocity += Vector2(0,-400)
 	handle_jump()

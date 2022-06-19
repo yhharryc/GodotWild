@@ -1,6 +1,6 @@
 extends Node
-
-
+signal GUI_ready
+var anim 
 onready var fade_ins= {
 	$BlackBackGround : ["color_rect_fade_in","color_rect_fade_out"],
 	
@@ -8,8 +8,10 @@ onready var fade_ins= {
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	anim=$AnimationPlayer
 	$TitleShaderLayer.visible = true
 	$InLevelScreen.visible = false
+	emit_signal("GUI_ready")
 	pass # Replace with function body.
 
 
@@ -63,18 +65,19 @@ func update_shader_position():
 	
 
 
-func _on_New_Game_pressed():
-	print_debug("NEW GAME PRESSED")
-	$AnimationPlayer.play("light_shader_fade_out")
-	yield($AnimationPlayer,"animation_finished")
-	#owner.load_level(0)
-	$TitleScreen.visible = false
-	$LevelSelectionScreen.visible = true
-	$InLevelScreen/PauseMenu.visible = false
-	$LevelSelectionScreen.set_buttons_disabled(!self.visible)
+#func _on_New_Game_pressed():
 	
-	$AnimationPlayer.play("light_shader_fade_in")
-	yield($AnimationPlayer,"animation_finished")
+#	print_debug("NEW GAME PRESSED")
+#	$AnimationPlayer.play("light_shader_fade_out")
+#	yield($AnimationPlayer,"animation_finished")
+#	#owner.load_level(0)
+#	$TitleScreen.visible = false
+#	$LevelSelectionScreen.visible = true
+#	$InLevelScreen/PauseMenu.visible = false
+#	$LevelSelectionScreen.set_buttons_disabled(!self.visible)
+#
+#	$AnimationPlayer.play("light_shader_fade_in")
+#	yield($AnimationPlayer,"animation_finished")
 	
 
 func _on_level_selected(index):

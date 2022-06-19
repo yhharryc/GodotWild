@@ -5,9 +5,7 @@
 [ext_resource path="res://game/resources/gui/locked_panel.png" type="Texture" id=3]
 
 [node name="LevelButton" type="TextureButton"]
-margin_right = 250.0
-margin_bottom = 160.0
-rect_min_size = Vector2( 250, 160 )
+rect_min_size = Vector2( 180, 160 )
 action_mode = 0
 script = ExtResource( 2 )
 lock_pic = ExtResource( 3 )

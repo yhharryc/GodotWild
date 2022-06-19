@@ -14,6 +14,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://game/scripts/LevelManager.gd"
 }, {
+"base": "State",
+"class": "PlayerState",
+"language": "GDScript",
+"path": "res://game/scripts/state_machine/states/player_state.gd"
+}, {
 "base": "Node",
 "class": "State",
 "language": "GDScript",
@@ -26,6 +31,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Level": "",
+"PlayerState": "",
 "State": "",
 "StateMachine": ""
 }
@@ -46,6 +52,11 @@ SaveManager="*res://game/scripts/SaveManager.gd"
 
 window/size/width=1200
 window/size/height=900
+window/size/resizable=false
+
+[global]
+
+display=false
 
 [input]
 

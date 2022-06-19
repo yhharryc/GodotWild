@@ -1,4 +1,4 @@
-extends "res://game/scripts/state_machine/state.gd"
+extends PlayerState
 
 
 # Declare member variables here. Examples:
@@ -7,13 +7,14 @@ extends "res://game/scripts/state_machine/state.gd"
 
 func enter():
 	play_anim("player_die")
-	
+	owner.applied_velocity = Vector2()
+	owner.find_node("Light2D",true,false).enabled = false
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func update(_delta):
 	
-	handle_gravity()
+	#handle_gravity()
 	pass
 #	pass
 
