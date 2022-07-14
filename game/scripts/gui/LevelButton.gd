@@ -19,6 +19,7 @@ func _process(delta):
 		$RecordLabel.visible = false
 	else:
 		$TextureRect.visible = false
+		$RecordLabel.visible = true
 		$Label.visible = true
 		$Label.text = "Level "+String(index+1)
 		if best_score!=null:
